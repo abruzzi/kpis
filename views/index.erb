@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <title>KPIs</title>
+    <script src="/components/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/components/highcharts/highcharts.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="scripts/app.js" type="text/javascript" charset="utf-8"></script> -->
+    <script type="text/javascript" charset="utf-8">
+
+    $(function () {
+      var options = {
+        title: {
+          x: -10,
+          y: 10
+        },
+
+        xAxis: {
+          categories: []
+        },
+
+        yAxis: {
+          title: {},
+          plotLines: [{
+            value: 90,
+            width: 3,
+            dashStyle : 'shortdash',
+            color: 'green'
+          }]
+        },
+
+        plotOptions: {
+          line: {
+            dataLabels: {
+              enabled: true
+            },
+            enableMouseTracking: false
+          }
+        },
+
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+          borderWidth: 0
+        },
+
+        series: [{}]
+
+      }
+
+      var kpi = <%= kpi %>;
+      var win = _.last(kpi.data, 7);
+
+      options.title.text = kpi.title;
+      options.yAxis.title.text = kpi.title;
+      options.xAxis.categories = _.pluck(win, 'date');
+      options.series[0].name = '';
+      options.series[0].data = _.pluck(win, 'value');
+
+      $('#container').highcharts(options);
+    });
+
+    </script>
+  </head>
+  <body>
+    <div id="container">
+    </div>
+  </body>
+</html>

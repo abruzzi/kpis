@@ -1,0 +1,28 @@
+{
+  "name": "kpis",
+  "version": "0.0.1",
+  "authors": [
+    "sara.m.sun@ericsson.com"
+  ],
+  "description": "kpis",
+  "keywords": [
+    "kpis"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "highcharts": "~3.0.7",
+    "jquery": "~2.1.1"
+  },
+  "devDependencies": {
+    "underscore": "~1.6.0"
+  }
+}
