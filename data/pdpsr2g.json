@@ -1,42 +1,42 @@
 {
-    "title": "Paging Success Rate",
+    "title": "PDP Success Rate(2G)",
     "target":90,
     "data": [
       {
         "date": "2014/05/19",
-        "value": 90.42
+        "value": 0
       },
       {
         "date": "2014/05/20",
-        "value": 90.30
+        "value": 0
       },
       {
         "date": "2014/05/21",
-        "value": 90.66
+        "value": 0
       },
       {
         "date": "2014/05/22",
-        "value": 90.12
+        "value": 0
       },
       {
         "date": "2014/05/23",
-        "value": 90.31
+        "value": 0
       },
       {
         "date": "2014/05/24",
-        "value": 89.69
+        "value": 0
       },
       {
         "date": "2014/05/25",
-        "value": 89.66
+        "value": 0
       },
-      {
+            {
         "date": "2014/05/26",
-        "value": 90.62
+        "value": 0
       },
-      {
+            {
         "date": "2014/05/27",
-        "value": 90.37
+        "value": 0
       }
     ]
 }

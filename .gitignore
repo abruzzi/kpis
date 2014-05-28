@@ -1,5 +1,5 @@
 components/
 .bundle/
 rack/
-public/components/
 *.swp
+temp/
