@@ -41,7 +41,7 @@ $(function () {
 
   }
 
-  $.getJSON('/data/week-21.json', function(data) {
+  $.getJSON('/data/psr.json', function(data) {
     var win = _.last(data, 7);
     options.xAxis.categories = _.pluck(win, 'date');
     options.series[0].name = 'PSR';

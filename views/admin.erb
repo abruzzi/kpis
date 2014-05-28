@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <title>Update the KPIs</title>
+    <link rel="stylesheet" href="/components/foundation/css/normalize.css" title="" type="" />
+    <link rel="stylesheet" href="/components/foundation/css/foundation.css" title="" type="" />
+
+    <script src="/components/modernizr/modernizr.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/components/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/components/foundation/foundation.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+  <body>
+    <div>
+        <form action="/updatefig" method="post" accept-charset="utf-8">
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Date: 
+                        <input type="date" name="date" id="date" value="<%= today %>" />
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-4 columns">
+                    <label>PSR:
+                        <input type="number" name="psr" id="psr" value="0.0" />
+                    </label>
+                </div>
+                <div class="large-4 columns">
+                    <label>CCR:
+                        <input type="number" name="ccr" id="ccr" value="0.0" />
+                    </label>
+                </div>
+                <div class="large-4 columns">
+                    <label>LUSR:
+                        <input type="number" name="lusr" id="lusr" value="0.0" />
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>HOSR: 
+                        <input type="number" name="hosr" id="hosr" value="0.0" />
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-3 columns">
+                    <label>ASR(2G):
+                        <input type="number" name="asr2g" id="asr2g" value="0.0" />
+                    </label>
+                </div>
+                <div class="large-3 columns">
+                    <label>ASR(3G):
+                        <input type="number" name="asr3g" id="asr3g" value="0.0" />
+                    </label>
+                </div>
+                <div class="large-3 columns">
+                    <label>PDPSR(2G):
+                        <input type="number" name="pdpsr2g" id="pdpsr2g" value="0.0" />
+                    </label>
+                </div>
+                <div class="large-3 columns">
+                    <label>PDPSR(3G):
+                        <input type="number" name="pdpsr3g" id="pdpsr3g" value="0.0" />
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-6 columns">
+                    <label>CCSRCS: 
+                        <input type="number" name="ccsrcs" id="ccsrcs" value="0.0" />
+                    </label>
+                </div>
+                <div class="large-6 columns">
+                    <label>CCSRPS: 
+                        <input type="number" name="ccsrps" id="ccsrps" value="0.0" />
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <input type="submit" name="submit" id="submit" value="submit" />
+                </div>
+            </div>
+        </form>
+    </div>
+  </body>
+</html>
