@@ -4,8 +4,6 @@ require 'json'
 require 'net/http'
 require 'uri'
 
-set :bind, "0.0.0.0"
-
 use Rack::Auth::Basic do |username, password|
     username == 'admin' && password == 'admin'
 end
@@ -15,7 +13,7 @@ get '/' do
 end
 
 get '/kpi/:type' do
-    kpi = Net::HTTP.get(URI.parse("https://s3.amazonaws.com/kpis/#{params[:type]}.json"))
+    kpi = Net::HTTP.get(URI.parse("http://s3.amazonaws.com/kpis/#{params[:type]}.json"))
     erb :index, :locals => {:kpi => kpi, :type => params[:type]}
 end
 
