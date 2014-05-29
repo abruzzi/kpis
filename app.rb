@@ -4,10 +4,7 @@ require 'json'
 require 'net/http'
 require 'uri'
 
-require './lib/kpi'
-
 set :bind, "0.0.0.0"
-
 
 use Rack::Auth::Basic do |username, password|
     username == 'admin' && password == 'admin'
