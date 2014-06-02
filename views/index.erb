@@ -4,7 +4,6 @@
     <script src="/components/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/components/highcharts/highcharts.js" type="text/javascript" charset="utf-8"></script>
     <script src="/components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
-    <!-- <script src="scripts/app.js" type="text/javascript" charset="utf-8"></script> -->
     <script type="text/javascript" charset="utf-8">
 
     $(function () {
@@ -49,20 +48,39 @@
 
       }
 
-      var kpi = <%= kpi %>;
-      var win = _.last(kpi.data, 7);
+      function isSinglton(kpi) {
+        return !_.isArray(kpi.data[0]);
+      }
+      var kpi = <%= kpis %>;
+
+
+      if(isSinglton(kpi)) {
+          var win = _.last(kpi.data, 7);
+
+          options.series[0] = {};
+          options.series[0].name = '<%= type %>';
+          options.series[0].negativeColor = 'red';
+          options.series[0].color = 'green';
+          
+          options.series[0].data = _.pluck(win, 'value');
+      } else {
+          for(var i = 0; i < kpi.data.length; i++) {
+              var win = _.last(kpi.data[i], 7);
+
+              options.series[i] = {};
+              options.series[i].name = kpi.title[i];
+              options.series[i].negativeColor = kpi.negativeColor[i];
+              options.series[i].color = kpi.color[i];
+              
+              options.series[i].data = _.pluck(win, 'value');
+          }
+      }
 
       options.plotOptions.line.threshold = kpi.target;
       options.title.text = kpi.title;
       options.yAxis.title.text = kpi.title;
       options.yAxis.plotLines[0].value = kpi.target;
       options.xAxis.categories = _.pluck(win, 'date');
-
-      options.series[0].name = '<%= type %>';
-      options.series[0].negativeColor = 'red';
-      options.series[0].color = 'green';
-      
-      options.series[0].data = _.pluck(win, 'value');
 
       var peroid = 10*60*1000;
       setInterval(function() {
