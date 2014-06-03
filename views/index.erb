@@ -59,8 +59,8 @@
 
           options.series[0] = {};
           options.series[0].name = '<%= type %>';
-          options.series[0].negativeColor = 'red';
-          options.series[0].color = 'green';
+          options.series[0].negativeColor = kpi.negativeColor[0];
+          options.series[0].color = kpi.color[0];
           
           options.series[0].data = _.pluck(win, 'value');
       } else {

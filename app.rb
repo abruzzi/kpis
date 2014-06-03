@@ -4,10 +4,6 @@ require 'json'
 require 'net/http'
 require 'uri'
 
-use Rack::Auth::Basic do |username, password|
-    username == 'admin' && password == 'admin'
-end
-
 get '/' do
     redirect '/kpi/psr'
 end
@@ -30,8 +26,21 @@ get '/kpi/:type' do
         }
         kpis[:data] << kpi2g["data"]
         kpis[:data] << kpi3g["data"]
+
+        if kpi2g["reverse"] or kpi3g["reverse"]
+            kpis[:negativeColor] = ["green", "blue"]
+            kpis[:color] = ["red", "red"]
+        end
     else
         kpis = JSON.parse(Net::HTTP.get(URI.parse("http://s3.amazonaws.com/kpis/#{type}.json")))
+        
+        kpis[:color] = ["green"]
+        kpis[:negativeColor] = ["red"]
+
+        if kpis["reverse"]
+            kpis[:color] = ["red"]
+            kpis[:negativeColor] = ["green"]
+        end
     end
     
     erb :index, :locals => {:kpis => kpis.to_json, :type => type}
