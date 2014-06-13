@@ -8,15 +8,16 @@ get '/' do
     redirect '/kpi/psr'
 end
 
-def parse
+def load(name)
+    File.open(name).read
 end
 
 get '/kpi/:type' do
     type = params[:type].downcase
-
+    
     if(['asr', 'pdpsr'].include? type) 
-        kpi2g = JSON.parse(Net::HTTP.get(URI.parse("http://s3.amazonaws.com/kpis/#{type}2g.json")))
-        kpi3g = JSON.parse(Net::HTTP.get(URI.parse("http://s3.amazonaws.com/kpis/#{type}3g.json")))
+        kpi2g = JSON.parse(load("data/#{type}2g.json"))
+        kpi3g = JSON.parse(load("data/#{type}3g.json"))
 
         kpis = {:data => [], 
                 :title => [kpi2g["title"], kpi3g["title"]], 
@@ -32,7 +33,7 @@ get '/kpi/:type' do
             kpis[:color] = ["red", "red"]
         end
     else
-        kpis = JSON.parse(Net::HTTP.get(URI.parse("http://s3.amazonaws.com/kpis/#{type}.json")))
+        kpis = JSON.parse(load("data/#{type}.json"))
         
         kpis[:color] = ["green"]
         kpis[:negativeColor] = ["red"]
